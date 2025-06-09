@@ -1,0 +1,22 @@
+[2025-06-04 10:29:59] BORROW FAILED: Book not available.
+[2025-06-04 10:33:03] BORROW SUCCESS: User 1 borrowed Book 1.
+[2025-06-04 12:29:31] BORROW FAILED: Book not available.
+[2025-06-04 12:29:39] BORROW FAILED: Book not available.
+[2025-06-04 12:30:52] BORROW FAILED: Book not available.
+[2025-06-04 12:31:02] BORROW FAILED: Book not available.
+[2025-06-04 12:36:28] BORROW FAILED: Book not available.
+[2025-06-04 12:42:07] BORROW FAILED: Book not available.
+[2025-06-04 12:42:19] BORROW FAILED: Book not available.
+[2025-06-04 12:46:50] BORROW FAILED: Book not available.
+[2025-06-04 12:46:57] BORROW FAILED: Book not available.
+[2025-06-04 12:47:24] 대출 실패
+[2025-06-04 12:53:18] 대출 실패
+[2025-06-04 12:59:10] 대출 실패
+[2025-06-04 12:59:14] 대출 실패
+[2025-06-04 12:59:56] 대출 실패
+[2025-06-04 13:00:28] 대출 실패
+[2025-06-04 13:09:51] 대출 실패
+[2025-06-04 13:09:55] 대출 실패
+[2025-06-04 13:09:58] 대출 실패
+[2025-06-06 14:08:52] 대출 성공: 사용자 2 대출도서 7.
+[2025-06-06 14:08:55] 대출 실패
