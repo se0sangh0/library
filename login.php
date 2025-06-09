@@ -17,7 +17,7 @@ if (isset($_SESSION['username'])) {
     <form action="login_process.php" method="POST">
         <p>아이디: <input type="text" name="username" required></p>
         <p>비밀번호: <input type="password" name="password" required></p>
-        <p><input type="submit" value="로그인"></p>
+        <p><input type="submit" value="로그인" class="btn btn-primary"></p>
     </form>
     <hr>
     <p>

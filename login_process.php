@@ -25,8 +25,7 @@ if ($result->num_rows === 1) {
         $_SESSION['user_id'] = $user['user_id'];
         $_SESSION['username'] = $user['username'];
         $_SESSION['name'] = $user['name'];
-        // 관리자 여부도 세션에 저장해두면 편리합니다. (users 테이블에 usertype 같은 컬럼 추가 필요)
-        // $_SESSION['is_admin'] = ($user['usertype'] === 'admin');
+        $_SESSION['is_admin'] = (bool)$user['is_admin']; 
 
         // 로그인 성공 후 메인 페이지로 이동
         header('Location: index.php');

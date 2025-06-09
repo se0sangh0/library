@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>회원가입</title>
+    <link rel="stylesheet" href="style.css">
     <script>
         let isIdChecked = false; // 아이디 중복 확인 여부 플래그
 
@@ -66,12 +67,12 @@
         <p>이메일: <input type="email" name="email"></p>
         <p>사용할 아이디(필수):
             <input type="text" id="username" name="username" oninput="onIdInput()" required>
-            <button type="button" onclick="checkId()">중복 확인</button>
+            <button type="button" onclick="checkId()" class="btn btn-secondary">중복 확인</button>
             <span id="id_feedback"></span>
         </p>
         <p>사용할 비밀번호(필수): <input type="password" name="password" required></p>
         <p>비밀번호 확인(필수): <input type="password" name="password_confirm" required></p>
-        <p><input type="submit" id="submit_btn" value="회원가입"></p>
+        <p><<input type="submit" value="회원가입" class="btn btn-primary">></p>
     </form>
 </body>
 </html>

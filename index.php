@@ -7,11 +7,13 @@ include 'config.php'; // DB 연결을 위해 추가
 <head>
     <meta charset="UTF-8">
     <title>작은 도서관</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container"><img src="character.png" width="50" height="50" alt="도서관 캐릭터" class="header-character">
     <h1>작은 도서관에 오신 것을 환영합니다!</h1>
     <hr>
-    <div>
+    <div class="navigation">
         <?php if (isset($_SESSION['username'])): 
             //if (isset($_SESSION['username'])): 코드를 통해 로그인 상태를 확인하고, 그에 따라 다른 HTML 블록을 보여줍니다. 
             ?>
@@ -44,15 +46,34 @@ include 'config.php'; // DB 연결을 위해 추가
         } else {
             echo "<li>신착 도서가 없습니다.</li>";
         }
-        $conn->close(); // DB 연결 종료
         ?>
     </ul>
     <hr>
 
     <h2>도서 대출 랭킹</h2>
+    <ol>
+        <?php
+        // loan_count(대출 횟수)를 기준으로 상위 10권의 도서를 조회하는 쿼리
+        $rank_sql = "SELECT title, author, loan_count FROM books ORDER BY loan_count DESC, title ASC LIMIT 10";
+        $rank_result = $conn->query($rank_sql);
+
+        if ($rank_result->num_rows > 0) {
+            while($rank_row = $rank_result->fetch_assoc()) {
+                // 기획서 요구사항에 따라 대출 횟수는 화면에 표시하지 않습니다.
+                echo "<li>" . htmlspecialchars($rank_row["title"]) . " - " . htmlspecialchars($rank_row["author"]) . "</li>";
+            }
+        } else {
+            echo "<li>대출 기록이 있는 도서가 없습니다.</li>";
+        }
+        ?>
+    </ol>
     <hr>
-
+    
     <h2>공지사항</h2>
-
+    <?php
+    // 페이지의 모든 DB 작업이 끝났으므로 여기서 연결을 닫습니다.
+    $conn->close();
+    ?>
+    </div>
 </body>
 </html>
