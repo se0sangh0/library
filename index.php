@@ -10,8 +10,20 @@ include 'config.php'; // DB 연결을 위해 추가
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container"><img src="character.png" width="50" height="50" alt="도서관 캐릭터" class="header-character">
-    <h1>작은 도서관에 오신 것을 환영합니다!</h1>
+    <div class="container">
+        <?php
+        // 관리자 여부 확인
+        if (!empty($_SESSION['is_admin']) && $_SESSION['is_admin'] === true) {
+            // 관리자일 경우: admin.php로 이동하는 링크가 있는 이미지 출력
+            echo '<a href="admin.php" title="관리자 페이지로 이동">';
+            echo '    <img src="character.png" width="50" height="50" alt="도서관 캐릭터" class="header-character">';
+            echo '</a>';
+        } else {
+            // 일반 사용자일 경우: 링크가 없는 일반 이미지 출력
+            echo '<img src="character.png" width="50" height="50" alt="도서관 캐릭터" class="header-character">';
+        }
+        ?>
+        <h1>작은 도서관에 오신 것을 환영합니다!</h1>
     <hr>
     <div class="navigation">
         <?php if (isset($_SESSION['username'])): 

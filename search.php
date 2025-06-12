@@ -17,7 +17,7 @@ $api_results = [];
 if (!empty($search_term)) {
 
     // 1. 우리 도서관 DB에서 검색
-    $stmt = $conn->prepare("SELECT * FROM books WHERE title LIKE ?");
+    $stmt = $conn->prepare("SELECT book_id, book_number, title, author, status, isbn FROM books WHERE title LIKE ?");
     $like_term = "%" . $search_term . "%";
     $stmt->bind_param("s", $like_term);
     $stmt->execute();
@@ -84,6 +84,7 @@ $conn->close();
                 <div class="book-info">
                     <h4><?php echo htmlspecialchars($book['title']); ?></h4>
                     <p>저자: <?php echo htmlspecialchars($book['author']); ?></p>
+                    <p>도서 번호 : <?php echo htmlspecialchars($book['book_number']); ?></p>
                 </div>
                 <div class="book-action">
                     <?php if ($book['status'] === 'available'): ?>
@@ -101,12 +102,14 @@ $conn->close();
     <?php endif; ?>
 
 
-    <?php if (!empty($api_results)): ?>
+   <?php if (!empty($api_results)): ?>
         <h3>📖 외부 도서 (신청 가능)</h3>
+        
         <?php foreach ($api_results as $book): ?>
             <?php
             // ISBN 정보가 없거나, 이미 우리 DB에 있는 책이면 건너뛰기
-            $isbn = $book['isbn'] ? explode(' ', $book['isbn'])[1] : ''; // ISBN-13 추출
+            // 카카오 API의 ISBN은 공백으로 구분된 2개의 번호를 줄 수 있으므로, 뒤의 번호(ISBN-13)를 사용
+            $isbn = !empty($book['isbn']) ? explode(' ', $book['isbn'])[1] : ''; 
             if (empty($isbn) || isset($local_results[$isbn])) {
                 continue;
             }
